@@ -17,14 +17,13 @@ app.use(cookieParser());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    cookie: {
-      maxAge: 4000000,
-    },
-    resave: false,
-    saveUninitialized: false,
+    cookie: { maxAge: 60000 },
+    resave: true,
+    saveUninitialized: true,
   })
 );
 app.use(flash());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -34,11 +33,28 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  res.render("index", { info: req.flash("info"), danger: req.flash("danger") });
+  const message = req.flash("message");
+  res.render("index", { message });
 });
 app.post("/contact-form", (req, res) => {
-  sendMail(req);
-  res.redirect("/");
+  const { from, subject, message } = req.body;
+
+  if (!from) {
+    req.flash('message', 'Please enter a recipient email address.')
+    return res.redirect("/");
+  }
+
+  if (!subject && !message) {
+    req.flash('message', 'Please type in a message.')
+    return res.redirect("/");
+  }
+  sendMail(req).then(() => {
+    req.flash('message', 'A response email has been sent you. Thank you.')
+    res.redirect("/");
+  }).catch(error => {
+    req.flash('message', error.message);
+    res.redirect("/");
+  });
 });
 
 app.listen(port, () => {

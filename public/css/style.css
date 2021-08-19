@@ -94,7 +94,7 @@ body {
   font-size: 0.8rem;
 }
 
-.job .tasks .task-title, .level .timezone, .sponsor-link a {
+.job .tasks .task-title, .level .timezone {
   color: #449399;
   font-style: italic;
   font-size: 0.8rem;
@@ -154,16 +154,17 @@ body {
   border-color: #449399;
 }
 
+.sponsor-img {
+  overflow: hidden;
+}
+
 .sponsor-img img {
   width: 100%;
 }
 
-.sponsor-link {
-  text-align: center;
-}
-
-.sponsor-link a {
-  font-style: normal;
+.sponsor-img a:hover img {
+  transform: scale(1.25);
+  transition: all 2s;
 }
 
 @media only screen and (min-width: 768px) {

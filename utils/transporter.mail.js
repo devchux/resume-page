@@ -57,22 +57,10 @@ const sendMail = (req) => {
     `,
   };
 
-  Promise.all([
-    transporter.sendMail(mailOptions),
+  return Promise.all([
     transporter.sendMail(message),
+    transporter.sendMail(mailOptions),
   ])
-    .then(() => {
-      req.flash(
-        "info",
-        "Thank you for reaching out to me. A response mail has been sent to email. Do check it out."
-      );
-    })
-    .catch((error) => {
-      req.flash(
-        "danger",
-        error.message
-      );
-    });
 };
 
 module.exports = sendMail;

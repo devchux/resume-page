@@ -210,8 +210,14 @@
           <div class="section">
             <h3 class="title">CONTACT ME</h3>
             <div>
-              <%- include('flash', { type: 'info', message: info }) %>
-              <%- include('flash', { type: 'danger', message: danger }) %>
+              <% if(message.length > 0) { %>
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                  <strong><span><%= message %></span></strong>
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <% } %>
             </div>
             <div class="body">
               <form action="/contact-form" method="post">
@@ -260,30 +266,27 @@
             </div>
           </div> <br>
           <div class="section">
-            <h5 class="title">ACKNOWLEDGEMENT</h5>
+            <h5 class="title">SPONSORS</h5>
             <div class="row body">
-              <div class="col-md-4">
+              <div class="col-4">
                 <div class="sponsor-img">
-                  <img src="images/hng.jpg" alt="hng">
-                </div>
-                <div class="sponsor-link">
-                  <a href="http://hng.tech">HNG</a>
+                  <a href="http://hng.tech">
+                    <img src="images/hng.jpg" alt="hng">
+                  </a>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-4">
                 <div class="sponsor-img">
-                  <img src="images/zuri.png" alt="zuri">
-                </div>
-                <div class="sponsor-link">
-                  <a href="http://zuri.team">Zuri Team</a>
+                  <a href="http://zuri.team">
+                    <img src="images/zuri.png" alt="zuri">
+                  </a>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-4">
                 <div class="sponsor-img">
-                  <img src="images/i4g.jpg" alt="i4g">
-                </div>
-                <div class="sponsor-link">
-                  <a href="http://ingressive.org">Ingressive For Good</a>
+                  <a href="http://ingressive.org">
+                    <img src="images/i4g.jpg" alt="i4g">
+                  </a>
                 </div>
               </div>
             </div>
