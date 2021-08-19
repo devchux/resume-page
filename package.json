@@ -6,6 +6,9 @@
   "author": "chukwudi",
   "license": "MIT",
   "private": false,
+  "engines": {
+    "node": "14.17.0"
+  },
   "scripts": {
     "start": "node index.js",
     "start:dev": "nodemon index.js"
